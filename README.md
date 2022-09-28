@@ -90,7 +90,7 @@ function shuffle(array) {
 }
 ```
 
-The time complexity of this function will be O(n)  (O(n) for while loop & O(n) for splice method). This solution is good when range (N) & K are big but the problem is as N & K gets bigger & bigger, the time it takes to run this function will increase at an quadratic rate (Bog O notation of O(n^2)). This solution is so good even when range (N) & K are getting bigger because of its linear Big o notation.
+The time complexity of this function will be O(n) . This solution is good when range (N) & K are big but the problem is as N & K gets bigger & bigger, the time it takes to run this function will increase at linear rate (Bog O notation of O(n)). This solution is so good even when range (N) & K are getting bigger because of its linear Big o notation.
 
 ## Solution 4 (hash map)
 The problem with the third solution is that if we want to pick M numbers within the range 0 to N without mutating the original array, we have to make a copy of the entire array and apply Fisher-Yates for just M items. We can use a hash map to track swipes that would otherwise occur in-place in Fisher-Yates. In fact, we are recording only the changes made to our array. Furthermore, we will keep that information around only for as long as we need. The following is the core method of this solution:
