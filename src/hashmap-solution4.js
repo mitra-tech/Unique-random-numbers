@@ -89,3 +89,62 @@ displayButton.addEventListener("click", () => {
 //   const secondInputValue = document.getElementById("second-number").value;
 //   console.log(firstInputValue);
 // }
+
+// An alternate way instead of hashmap
+import "./styles.css"
+
+// UI elements
+const displayButton = document.getElementById("display-ten-nums")
+const octagonContainer = document.querySelector("#octagon-container")
+
+let randomNumbers = []
+
+function generateRandomInteger(number) {
+    return (Math.floor(Math.random() * number) + 1)
+}
+
+function getMapValueOrKey(map, key){
+    return map.has(key) ? map.get(key) : key
+}
+
+function shuffle(rangeMax, uniqueNumber) {
+    let swapMap = new Map()
+
+    let start = rangeMax
+    let end = rangeMax - uniqueNumber
+
+    for( let pointerIndex = start; pointerIndex > end ; pointerIndex--) {
+      let randomIndex = generateRandomInteger(pointerIndex)
+
+      randomNumbers.push(getMapValueOrKey(swapMap, randomIndex))
+
+      swapMap.set(randomIndex, getMapValueOrKey(swapMap, pointerIndex))
+
+      if(swapMap.get(pointerIndex)) {
+        // swapMap.delete(pointerIndex)
+      }
+    }
+    return randomNumbers
+}
+
+function addRandomNumbersToUI(generatedRandomNumbers) {
+    octagonContainer.insertAdjacentHTML('afterbegin', generatedRandomNumbers.map(number => `<div class="octagon"><p class="numbers">${number}</p></div>`))
+}
+
+const rangeMaxValue = 10
+const uniqueNumberQuantity = 10
+
+displayButton.addEventListener('click', () => {
+    const randomNumberElementInUI = document.querySelector('.octagon')
+
+    if (document.body.contains(randomNumberElementInUI)) {
+      const generatedRandomNumbers = shuffle(rangeMaxValue, uniqueNumberQuantity)
+      octagonContainer.innerHTML = ''
+      addRandomNumbersToUI(generatedRandomNumbers)
+      randomNumbers = []
+    } else {
+     const generatedRandomNumbers = shuffle(rangeMaxValue, uniqueNumberQuantity)
+     addRandomNumbersToUI(generatedRandomNumbers)
+     randomNumbers = []
+    }
+})
