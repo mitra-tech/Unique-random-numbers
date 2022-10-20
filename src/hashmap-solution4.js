@@ -90,7 +90,7 @@ displayButton.addEventListener("click", () => {
 //   console.log(firstInputValue);
 // }
 
-// An alternate way instead of hashmap
+// An alternate way for the last solution
 import "./styles.css"
 
 // UI elements
